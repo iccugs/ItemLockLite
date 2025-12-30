@@ -1,8 +1,8 @@
 ## Interface: 110002
 ## Title: ItemLockLite
 ## Notes: Lightweight item lock addon to prevent accidental selling or using of locked items
-## Author: iccugs
-## Version: 1.0.0
+## Author: Paradox.Actual
+## Version: 1.0
 ## SavedVariables: ItemLockLiteDB
 
 ItemLockLite.lua
