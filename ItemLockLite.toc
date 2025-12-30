@@ -1,8 +1,8 @@
 ## Interface: 110002
 ## Title: ItemLockLite
-## Notes: Lightweight item lock addon to prevent accidental selling or using of locked items
+## Notes: Prevents accidental gear swaps by enforcing a locked equipment state
 ## Author: Paradox.Actual
-## Version: 1.0
+## Version: 0.3
 ## SavedVariables: ItemLockLiteDB
 
 ItemLockLite.lua
