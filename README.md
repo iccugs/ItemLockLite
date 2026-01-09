@@ -59,14 +59,23 @@ If you intentionally want to change gear, disable the lock, make changes, then r
 - **SavedVariables**: Uses `ItemLockLiteDB.settings.lockGear`
 - **Approach**: Detects equipment changes and reverts them when locked
 - **Events**: Uses `PLAYER_EQUIPMENT_CHANGED`
+- **API**: Uses modern `C_Item.EquipItemByName` (patch 10.2.6+) with fallback to deprecated API for compatibility
 - **Safety**: Avoids overriding protected container or equip APIs
 - **UI Feedback**: Uses `UIErrorsFrame` and chat messages
+
+## Recent Updates (v0.4)
+
+- **Fixed**: Updated to use `C_Item.EquipItemByName` API for patch 10.2.6+ compatibility
+- **Fixed**: Corrected timer usage to `C_Timer.After` for proper functionality
+- **Improved**: Automatic API fallback ensures compatibility with older WoW versions
+- **Enhanced**: Increased revert delay to 50ms for better client state stability
 
 ## Limitations
 
 - Gear swaps made while in combat may not be reverted due to Blizzard restrictions
 - If a locked item is destroyed or moved, it cannot be re-equipped
 - This addon does not directly block selling or scrapping; it prevents gear loss by preserving the equipped state
+- Swapping between two identical items (same item ID) may not be prevented in all cases
 
 ## License
 

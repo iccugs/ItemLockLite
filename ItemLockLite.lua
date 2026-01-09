@@ -1,4 +1,4 @@
--- ItemLockLite v0.3
+-- ItemLockLite v0.4
 -- Goal: "Lock Equipped Gear Mode" that prevents gear swaps by reverting equipment changes.
 -- Approach: Snapshot equipped items when lock enabled; if any slot changes, auto-re-equip snapshot item.
 -- This avoids taint from overriding Blizzard container APIs and avoids relying on bag button templates.
@@ -43,15 +43,23 @@ local function ReEquipSlot(slot)
     return
   end
 
-  -- If we’re in combat, don’t try to force equip (can cause protected action issues)
+  -- If we're in combat, don't try to force equip (can cause protected action issues)
   if InCombatLockdown and InCombatLockdown() then
     return
   end
 
   -- Attempt to re-equip the snapshot item into the slot.
-  -- EquipItemByName(itemLink, slot) is the simplest; if it fails, user may have moved/destroyed item.
+  -- Use C_Item.EquipItemByName (new API) with fallback to old API for compatibility
   isReverting = true
-  EquipItemByName(wantedLink, slot)
+  
+  if C_Item and C_Item.EquipItemByName then
+    -- Use new API (patch 10.2.6+)
+    C_Item.EquipItemByName(wantedLink, slot)
+  else
+    -- Fallback to deprecated API
+    EquipItemByName(wantedLink, slot)
+  end
+  
   isReverting = false
 end
 
@@ -67,7 +75,7 @@ local function OnEquipmentChanged(slot, hasItem)
   if wantedLink and currentLink ~= wantedLink then
     err("Gear locked: reverting swap.")
     -- Slight delay helps if the equip event fires before client state settles.
-    C_Timer.After(0, function() ReEquipSlot(slot) end)
+    C_Timer.After(0.05, function() ReEquipSlot(slot) end)
   end
 end
 
