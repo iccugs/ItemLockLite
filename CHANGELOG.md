@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.5] - 2026-01-15
+
+### Fixed
+- **Critical Bug**: Fixed gear lock not working reliably - items would sometimes not be re-equipped
+  - Completely rewrote the re-equip mechanism to use pickup/place method instead of EquipItemByName
+  - Added retry logic (up to 3 attempts) to handle timing issues when items haven't settled into bags yet
+  - Properly handles cursor state and places displaced items back into bags
+  - Added cooldown system to prevent rapid re-triggering and swap loops
+
+### Improved
+- **Reliability**: Gear swaps are now blocked and reverted consistently, even with rapid successive swaps
+- **Item Detection**: Searches both bags and equipment slots to find the correct item to re-equip
+- **Edge Cases**: Handles scenarios where items are temporarily on cursor or in other equipment slots
+
+### Technical Changes
+- Switched from `C_Item.EquipItemByName()` to `C_Container.PickupContainerItem()` + `PickupInventoryItem()` method
+- Added automatic retry mechanism with 0.2s delays between attempts (max 3 retries)
+- Implemented 0.5s cooldown between revert operations to prevent event loops
+- Extended `isReverting` flag duration to 0.3s to ensure event handling stability
+- Added proper cursor state management to handle displaced items
+
 ## [0.4] - 2026-01-09
 
 ### Fixed

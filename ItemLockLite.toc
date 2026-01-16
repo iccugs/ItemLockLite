@@ -2,7 +2,7 @@
 ## Title: ItemLockLite
 ## Notes: Prevents accidental gear swaps by enforcing a locked equipment state
 ## Author: Paradox.Actual
-## Version: 0.4
+## Version: 0.5
 ## SavedVariables: ItemLockLiteDB
 
 ItemLockLite.lua

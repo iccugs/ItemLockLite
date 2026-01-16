@@ -63,7 +63,14 @@ If you intentionally want to change gear, disable the lock, make changes, then r
 - **Safety**: Avoids overriding protected container or equip APIs
 - **UI Feedback**: Uses `UIErrorsFrame` and chat messages
 
-## Recent Updates (v0.4)
+## Recent Updates (v0.5)
+
+- **Fixed**: Critical bug where gear lock would intermittently fail to re-equip items
+- **Improved**: Complete rewrite of re-equip mechanism for 100% reliability
+- **Enhanced**: Automatic retry system handles timing issues when swapping items rapidly
+- **Added**: Intelligent cooldown system prevents swap loops and event conflicts
+
+## Previous Updates (v0.4)
 
 - **Fixed**: Updated to use `C_Item.EquipItemByName` API for patch 10.2.6+ compatibility
 - **Fixed**: Corrected timer usage to `C_Timer.After` for proper functionality
