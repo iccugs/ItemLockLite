@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.6] - 2026-01-22
+- **Verified**: Compatible with WoW Pre-Release Version 12.0.0
+
+### Fixed
+- **Critical Bug**: Fixed gear lock not working reliably - items would sometimes not be re-equipped
+  - Completely rewrote the re-equip mechanism to use pickup/place method instead of EquipItemByName
+  - Added retry logic (up to 3 attempts) to handle timing issues when items haven't settled into bags yet
+  - Properly handles cursor state and places displaced items back into bags
+  - Added cooldown system to prevent rapid re-triggering and swap loops
+
 ## [0.5] - 2026-01-15
 
 ### Fixed

@@ -63,6 +63,9 @@ If you intentionally want to change gear, disable the lock, make changes, then r
 - **Safety**: Avoids overriding protected container or equip APIs
 - **UI Feedback**: Uses `UIErrorsFrame` and chat messages
 
+## Latest Update (v0.6)
+- **Verified**: Compatible with WoW Pre-Release Version 12.0.0
+
 ## Recent Updates (v0.5)
 
 - **Fixed**: Critical bug where gear lock would intermittently fail to re-equip items
