@@ -79,7 +79,7 @@ If you intentionally want to change gear, disable the lock, make changes, then r
 ## Previous Updates (v0.6)
 - **Verified**: Compatible with WoW Pre-Release Version 12.0.0
 
-## v0.5
+## Previous Updates (v0.5)
 
 - **Fixed**: Critical bug where gear lock would intermittently fail to re-equip items
 - **Improved**: Complete rewrite of re-equip mechanism for 100% reliability
