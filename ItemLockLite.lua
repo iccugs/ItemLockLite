@@ -58,7 +58,7 @@ local function ReEquipSlot(slot, retryCount)
   end
   
   -- Check if there's something on the cursor
-  local cursorType, cursorItemID, cursorItemLink = GetCursorInfo()
+  local cursorType, _, _ = GetCursorInfo()
   if cursorType == "item" then
     ClearCursor()
   end
@@ -114,7 +114,7 @@ local function ReEquipSlot(slot, retryCount)
   
   -- The item that was in the slot is now on cursor - put it back in bags
   C_Timer.After(0.1, function()
-    local cursorType = GetCursorInfo()
+    local cursorType, _, _ = GetCursorInfo()
     if cursorType == "item" then
       -- Try to put it back in the original bag slot if empty, otherwise first available
       if C_Container.GetContainerItemInfo(foundBag, foundSlot) == nil then
