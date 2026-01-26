@@ -1,4 +1,4 @@
--- ItemLockLite v0.5
+-- ItemLockLite v0.7
 -- Goal: "Lock Equipped Gear Mode" that prevents gear swaps by reverting equipment changes.
 -- Approach: Snapshot equipped items when lock enabled; if any slot changes, auto-re-equip snapshot item.
 -- This avoids taint from overriding Blizzard container APIs and avoids relying on bag button templates.
@@ -185,6 +185,37 @@ local function HookPaperDollSlots()
   end
 end
 
+-- Settings Panel
+local settingsCategory -- Store at the module level
+
+local function CreateSettingsPanel()
+  local category, _ = Settings.RegisterVerticalLayoutCategory("ItemLockLite")
+  settingsCategory = category.ID -- Save the category reference
+
+  -- Create an initializer to properly link the checkbox to the saved variable
+  local function GetLockGearValue()
+    return ItemLockLiteDB.settings.lockGear
+  end
+  
+  local function SetLockGearValue(value)
+    ItemLockLiteDB.settings.lockGear = value
+    if value then
+      SnapshotEquipped()
+      info("Lock Equipped Gear Mode: ON (snapshot saved)")
+    else
+      info("Lock Equipped Gear Mode: OFF")
+    end
+  end
+
+  local lockGearSetting = Settings.RegisterProxySetting(category, "ItemLockLite_LockGear",
+    Settings.VarType.Boolean, "Lock Equipped Gear", 
+    false, GetLockGearValue, SetLockGearValue)
+
+  Settings.CreateCheckbox(category, lockGearSetting, "Prevents gear from being swapped or removed")
+
+  Settings.RegisterAddOnCategory(category)
+end
+
 -- Slash command
 SLASH_ITEMLOCKLITE1 = "/ilock"
 SlashCmdList["ITEMLOCKLITE"] = function(msg)
@@ -200,7 +231,7 @@ SlashCmdList["ITEMLOCKLITE"] = function(msg)
     end
   end
 
-  if msg == "gear" or msg == "toggle" or msg == "" then
+  if msg == "" then
     setLock(not ItemLockLiteDB.settings.lockGear)
   elseif msg == "on" then
     setLock(true)
@@ -209,8 +240,12 @@ SlashCmdList["ITEMLOCKLITE"] = function(msg)
   elseif msg == "snap" then
     SnapshotEquipped()
     info("Snapshot refreshed.")
+  elseif msg == "config" then
+    if settingsCategory then
+      Settings.OpenToCategory(settingsCategory)
+    end
   else
-    info("Commands: /ilock gear (toggle), /ilock on, /ilock off, /ilock snap")
+    info("Commands: /ilock, /ilock on, /ilock off, /ilock snap")
   end
 end
 
@@ -227,6 +262,7 @@ frame:SetScript("OnEvent", function(self, event, arg1, arg2)
   if event == "ADDON_LOADED" and arg1 == addonName then
     ItemLockLiteDB = ItemLockLiteDB or {}
     ItemLockLiteDB.settings = ItemLockLiteDB.settings or { lockGear = false }
+    CreateSettingsPanel()
     info("Loaded. Use /ilock gear to toggle gear lock.")
   elseif event == "PLAYER_LOGIN" then
     HookPaperDollSlots()

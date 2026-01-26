@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.7] - 2026-01-26
+
+### Added
+- **Settings Panel**: Added in-game settings panel accessible via ESC > Options > AddOns > ItemLockLite
+  - Checkbox to toggle gear lock on/off
+  - Settings persist between sessions
+  - New slash command `/ilock config` to open settings directly
+
+### Changed
+- **Simplified Commands**: Streamlined slash commands to essential functions only
+  - Kept: `/ilock` (toggle), `/ilock on`, `/ilock off`, `/ilock snap`, `/ilock config`
+  - Removed redundant aliases to keep the interface clean and simple
+
+### Improved
+- **Code Quality**: Used underscore placeholders for intentionally unused return values
+  - Improved code readability by explicitly marking ignored function returns
+  - Follows Lua best practices for handling multiple return values
+
 ## [0.6] - 2026-01-22
 - **Verified**: Compatible with WoW Pre-Release Version 12.0.0
 
