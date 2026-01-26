@@ -45,11 +45,18 @@ This approach avoids UI taint and does not interfere with bag usage, consumables
   ```
   /ilock snap
   ```
+- Open settings panel:
+  ```
+  /ilock config
+  ```
+
+You can also manage the gear lock via the in-game settings panel:
+- Press `ESC` > `Options` > `AddOns` > `ItemLockLite`
 
 ### Recommended Workflow
 
 1. Equip your desired gear
-2. Enable gear lock (`/ilock on`)
+2. Enable gear lock (`/ilock on` or via settings panel)
 3. Loot, scrap, and farm freely without fear of accidental gear swaps
 
 If you intentionally want to change gear, disable the lock, make changes, then re-enable it.
@@ -63,10 +70,16 @@ If you intentionally want to change gear, disable the lock, make changes, then r
 - **Safety**: Avoids overriding protected container or equip APIs
 - **UI Feedback**: Uses `UIErrorsFrame` and chat messages
 
-## Latest Update (v0.6)
+## Latest Update (v0.7)
+- **Added**: In-game settings panel accessible via ESC > Options > AddOns > ItemLockLite
+- **Added**: `/ilock config` command to open settings directly
+- **Improved**: Simplified slash commands for cleaner interface
+- **Improved**: Code quality with better handling of unused function returns
+
+## Previous Updates (v0.6)
 - **Verified**: Compatible with WoW Pre-Release Version 12.0.0
 
-## Recent Updates (v0.5)
+## v0.5
 
 - **Fixed**: Critical bug where gear lock would intermittently fail to re-equip items
 - **Improved**: Complete rewrite of re-equip mechanism for 100% reliability
