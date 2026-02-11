@@ -1,8 +1,9 @@
-## Interface: 120000
+## Interface: 120001
 ## Title: ItemLockLite
 ## Notes: Prevents accidental gear swaps by enforcing a locked equipment state
 ## Author: Paradox.Actual
-## Version: 0.7
+## Version: 0.8
+## IconTexture: Interface\Icons\inv_chest_armor_bloodelfciviliana_b_01
 ## SavedVariables: ItemLockLiteDB
 
 ItemLockLite.lua

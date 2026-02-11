@@ -70,35 +70,21 @@ If you intentionally want to change gear, disable the lock, make changes, then r
 - **Safety**: Avoids overriding protected container or equip APIs
 - **UI Feedback**: Uses `UIErrorsFrame` and chat messages
 
-## Latest Update (v0.7)
-- **Added**: In-game settings panel accessible via ESC > Options > AddOns > ItemLockLite
-- **Added**: `/ilock config` command to open settings directly
-- **Improved**: Simplified slash commands for cleaner interface
-- **Improved**: Code quality with better handling of unused function returns
+## Latest Update (v0.8)
+- **Notes**: No major refactoring was implemented (none of the code that you care about was changed).
+- **Updates**: TOC `Interface` line was changed from 120000 to 120001. Version was bumped from 0.7 to 0.8 to adhere to CurseForge standards so users can update the add-on within the CurseForge app and eliminate "app is out-of-date" type errors.
+- **Testing**: Item lock functionality was tested in the new WoW Retail version 12.0.1 and works as intended.
 
-## Previous Updates (v0.6)
-- **Verified**: Compatible with WoW Pre-Release Version 12.0.0
-
-## Previous Updates (v0.5)
-
-- **Fixed**: Critical bug where gear lock would intermittently fail to re-equip items
-- **Improved**: Complete rewrite of re-equip mechanism for 100% reliability
-- **Enhanced**: Automatic retry system handles timing issues when swapping items rapidly
-- **Added**: Intelligent cooldown system prevents swap loops and event conflicts
-
-## Previous Updates (v0.4)
-
-- **Fixed**: Updated to use `C_Item.EquipItemByName` API for patch 10.2.6+ compatibility
-- **Fixed**: Corrected timer usage to `C_Timer.After` for proper functionality
-- **Improved**: Automatic API fallback ensures compatibility with older WoW versions
-- **Enhanced**: Increased revert delay to 50ms for better client state stability
-
-## Limitations
+## Known Limitations
 
 - Gear swaps made while in combat may not be reverted due to Blizzard restrictions
 - If a locked item is destroyed or moved, it cannot be re-equipped
 - This addon does not directly block selling or scrapping; it prevents gear loss by preserving the equipped state
 - Swapping between two identical items (same item ID) may not be prevented in all cases
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for detailed version history and technical changes.
 
 ## License
 
