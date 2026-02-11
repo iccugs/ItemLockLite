@@ -1,4 +1,4 @@
--- ItemLockLite v0.7
+-- ItemLockLite v0.8
 -- Goal: "Lock Equipped Gear Mode" that prevents gear swaps by reverting equipment changes.
 -- Approach: Snapshot equipped items when lock enabled; if any slot changes, auto-re-equip snapshot item.
 -- This avoids taint from overriding Blizzard container APIs and avoids relying on bag button templates.
